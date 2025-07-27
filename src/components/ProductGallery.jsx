@@ -20,14 +20,29 @@ function ProductGallery({activeIndex, setActiveIndex, setShowLightbox}) {
     };
 
    return (
-    <div className="product-gallery">
-        <img src={mainImages[activeIndex]} alt="Main Shoe" className="main-image" onClick={handleMainImageClick}/>
-        <div className="thumnail-row">
+    <div className="flex-1 flex flex-col item-center gap-6">
+        <img
+            src={mainImages[activeIndex]}
+            alt="Main Shoe"
+            className="w-[75%] mt-4 rounded-2xl cursor-pointer"
+            onClick={handleMainImageClick}/>
+        <div className="flex gap-[1.7rem] mt-4 w-[75%]">
             {thumbnails.map((thumb, index) => (
                 <div key={index}
-                     className={`thumbnail-wrapper ${index === activeIndex ? 'active' : ''}`}
-                     onClick={() => setActiveIndex(index)}>
-                    <img src={thumb} data-index="1" alt={`thumbnail${index}`}/>
+                    onClick={() => setActiveIndex(index)}
+                    className={`
+                        w-[5.1rem] h-[5.1rem] rounded-xl cursor-pointer relative
+                        overflow-hidden box-border transition-all duration-200
+                        ${index === activeIndex
+                            ? 'border-2 border-orange-500 bg-white/70'
+                            : 'border-2 border-transparent'}`}
+                >
+                    {index === activeIndex && (
+                        <div className="absolute inset-0 bg-white/50 z-10 rounded-xl pointer-events-none"></div>
+                    )}
+                    <img src={thumb} data-index="1"
+                        alt={`thumbnail${index}`}
+                        className="w-full h-full object-cover rounded-lg z-0 block"/>
                 </div>
             ))}
         </div>

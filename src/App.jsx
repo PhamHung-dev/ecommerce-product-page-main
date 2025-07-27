@@ -25,7 +25,7 @@ function App() {
         cartProducts={cartProducts}
         showCart={showCart}
         setShowCart={setShowCart}/>
-      <main className="product-page">
+      <main className="flex flex-wrap gap-8 px-8 py-20">
         <ProductGallery
           activeIndex={activeIndex} 
           setActiveIndex={setActiveIndex}

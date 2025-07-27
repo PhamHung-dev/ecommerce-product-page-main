@@ -25,31 +25,47 @@ function Lightbox({ activeIndex, setActiveIndex, showLightbox, setShowLightbox }
     const closeLightbox = () => setShowLightbox(false);
 
     return (
-    <div className="lightbox-hidden" style={{ display: showLightbox ? 'flex' : 'none' }}>
-    <div className="lightbox-content">
-        <div className="close-lightbox" onClick={closeLightbox}>
+    <div className={`${showLightbox ? 'flex' : 'hidden'} fixed inset-0 bg-black/75 z-[998] justify-center items-center`}>
+    <div className="relative p-4 rounded-xl max-w-[500px] w-full text-center bg-transparent">
+        <div className="absolute -top-4 -right-2 w-16 h-16 flex items-center justify-center
+            cursor-pointer text-white hover:text-orange-500"
+            onClick={closeLightbox}
+        >
             <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
                 <path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="currentColor" fillRule="evenodd"/>
             </svg>
         </div>
 
-        <img src={mainImages[activeIndex]} className="lightbox-image" alt="lightbox-mainImage"/>
-        <div className="next" onClick={handleNext}>
+        <img src={mainImages[activeIndex]} className="w-full rounded-xl lightbox-image" alt="lightbox-mainImage"/>
+        <div className="absolute top-[38%] -right-2 w-12 h-12 bg-white text-black flex
+            items-center justify-center rounded-full cursor-pointer hover:text-orange-500"
+            onClick={handleNext}
+        >
             <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg">
                 <path d="m2 1 8 8-8 8" stroke="currentColor" strokeWidth="3" fill="none" fillRule="evenodd"/>
             </svg>
         </div>
-        <div className="prev" onClick={handlePrev}>
+        <div className="absolute top-[38%] -left-2 w-12 h-12 bg-white text-black flex
+            items-center justify-center rounded-full cursor-pointer hover:text-orange-500"
+            onClick={handlePrev}
+        >
             <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg">
                 <path d="M11 1 3 9l8 8" stroke="currentColor" strokeWidth="3" fill="none" fillRule="evenodd"/>
             </svg>
         </div>
 
-        <div className="lightbox-thumbnails">
+        <div className="mt-4 flex justify-center gap-6">
             {thumbnails.map((thumb, index) => (
                 <div key={index}
-                     className={`lightbox-thumbnail-wrapper ${index === activeIndex ? 'active' : ''}`}
-                     onClick={() => setActiveIndex(index)}>
+                     className={`w-20 h-20 overflow-hidden rounded-md border-2 cursor-pointer
+                        ${index === activeIndex
+                        ? 'border-orange-500 bg-white/70 rounded-xl'
+                        : 'border-transparent'}`}
+                     onClick={() => setActiveIndex(index)}
+                >
+                    {index === activeIndex && (
+                        <div className="absolute inset-0 bg-white/50 z-10 pointer-events-none rounded-xl"></div>
+                    )}
                     <img src={thumb} data-index="1" alt={`lightboxThumbnail${index}`}/>
                 </div>
             ))}

@@ -57,23 +57,28 @@ function Header({ cartProducts, showCart, setShowCart }) {
   }, [showCart]);
 
   return (
-    <header className="navbar">
-      <div className="logo">
+    <header className="
+            flex justify-between items-center
+            py-4 border-b border-gray-400 h-24">
+      <div className="flex-1">
         <img src={logo} alt="logo" />
       </div>
-      <nav>
+      <nav className="flex-[4] flex justify-start gap-12">
         {["Collections", "Men", "Women", "About", "Contact"].map((label, i) => (
-          <a href="#" key={i}>{label}</a>
+          <a href="#"
+          key={i}
+          className="text-gray-600 text-[1.2rem] no-underline hover:text-black">
+          {label}</a>
         ))}
       </nav>
-      <div className="icon">
-        <img src={cartIcon} alt="cart" onClick={handleCartClick}/>
+      <div className="flex-1 flex justify-end items-center gap-12 relative">
+        <img src={cartIcon} alt="cart" onClick={handleCartClick} className="cursor-pointer"/>
         {showCart && (
-          <div className="cart-dropdown" ref={cartRef}>
+          <div className="absolute top-16 right-0 bg-white shadow-lg rounded p-4 w-64 z-10" ref={cartRef}>
             {cartProducts.length === 0 ? renderEmptyCart() : renderCartItems()}
           </div>
         )}
-        <img src={avatar} alt="avatar" className="avatar" />
+        <img src={avatar} alt="avatar" className="w-12 h-auto rounded-full" />
       </div>
     </header>
   );
