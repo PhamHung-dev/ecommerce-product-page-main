@@ -13,31 +13,36 @@ function Header({ cartProducts, showCart, setShowCart }) {
   };
 
   const renderEmptyCart = () => (
-    <div className="none-cart">
-      <h3>Cart</h3>
-      <div className="cart-content-empty">
+    <div className="w-full">
+      <h3 className="text-[1.2rem] border-b border-gray-200 px-6 py-4">Cart</h3>
+      <div className="text-center py-12 text-gray-500 text-[1.2rem] font-bold">
         <p>Your cart is empty.</p>
       </div>
     </div>
   );
 
   const renderCartItems = () => (
-    <div className="cart-item">
-      <h3>Cart</h3>
+    <div className="w-full">
+      <h3 className="text-[1.2rem] border-b border-gray-200 px-6 py-4">Cart</h3>
       {cartProducts.map((product, index) => (
-        <div className="item" key={index}>
-          <img src={lightboxThumbnail1} className="cart-thumb" alt="product thumbnail" />
-          <div className="item-info">
-            <p className="product-name">{product.name}</p>
-            <p className="price">
+        <div className="flex items-center gap-4 px-6 py-4" key={index}>
+          <img src={lightboxThumbnail1}
+              className="w-12 h-12 object-cover rounded-md"
+              alt="product thumbnail"
+          />
+          <div className="flex flex-col justify-center gap-1 flex-grow">
+            <p className="text-[1rem] text-gray-800">{product.name}</p>
+            <p className="text-gray-500 text-[1rem]">
               $125.00 x {product.quantity}
-              <span className="total-price"> ${product.quantity * 125}.00</span>
+              <span className="font-bold text-black ml-2"> ${product.quantity * 125}.00</span>
             </p>
           </div>
-          <img src={deleteIcon} className="delete-icon" alt="delete" />
+          <img src={deleteIcon} className="w-4 h-4 cursor-pointer" alt="delete" />
         </div>
       ))}
-      <button className="checkout-btn">Checkout</button>
+      <button className="w-[90%] bg-orange-500 text-white font-bold rounded-lg
+        px-6 py-4 mx-auto block mt-2 hover:opacity-90 transition">Checkout
+      </button>
     </div>
   );
 
@@ -74,7 +79,7 @@ function Header({ cartProducts, showCart, setShowCart }) {
       <div className="flex-1 flex justify-end items-center gap-12 relative">
         <img src={cartIcon} alt="cart" onClick={handleCartClick} className="cursor-pointer"/>
         {showCart && (
-          <div className="absolute top-16 right-0 bg-white shadow-lg rounded p-4 w-64 z-10" ref={cartRef}>
+          <div className="absolute top-16 right-0 bg-white shadow-lg rounded p-4 w-96 z-10" ref={cartRef}>
             {cartProducts.length === 0 ? renderEmptyCart() : renderCartItems()}
           </div>
         )}

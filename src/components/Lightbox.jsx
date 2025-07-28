@@ -27,7 +27,7 @@ function Lightbox({ activeIndex, setActiveIndex, showLightbox, setShowLightbox }
     return (
     <div className={`${showLightbox ? 'flex' : 'hidden'} fixed inset-0 bg-black/75 z-[998] justify-center items-center`}>
     <div className="relative p-4 rounded-xl max-w-[500px] w-full text-center bg-transparent">
-        <div className="absolute -top-4 -right-2 w-16 h-16 flex items-center justify-center
+        <div className="absolute -top-9 -right-2 w-16 h-16 flex items-center justify-center
             cursor-pointer text-white hover:text-orange-500"
             onClick={closeLightbox}
         >
@@ -57,7 +57,7 @@ function Lightbox({ activeIndex, setActiveIndex, showLightbox, setShowLightbox }
         <div className="mt-4 flex justify-center gap-6">
             {thumbnails.map((thumb, index) => (
                 <div key={index}
-                     className={`w-20 h-20 overflow-hidden rounded-md border-2 cursor-pointer
+                     className={`relative w-20 h-20 overflow-hidden rounded-md border-2 cursor-pointer
                         ${index === activeIndex
                         ? 'border-orange-500 bg-white/70 rounded-xl'
                         : 'border-transparent'}`}

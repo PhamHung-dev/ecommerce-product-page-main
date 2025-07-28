@@ -20,7 +20,7 @@ function App() {
   }, [cartProducts]);
 
   return (
-    <div className="wrapper">
+    <div className="w-[70%] mx-auto">
       <Header
         cartProducts={cartProducts}
         showCart={showCart}
