@@ -1,12 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import lightboxThumbnail1 from "../assets/images/image-product-1-thumbnail.jpg";
 import deleteIcon from "../assets/images/icon-delete.svg";
 import logo from "../assets/images/logo.svg";
 import cartIcon from "../assets/images/icon-cart.svg";
 import avatar from "../assets/images/image-avatar.png";
+import menuIcon from "../assets/images/icon-menu.svg";
+import iconClose from "../assets/images/icon-close.svg";
 
 function Header({ cartProducts, showCart, setShowCart }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
 
   const handleCartClick = () => {
     setShowCart(!showCart); // toggle
@@ -64,11 +69,16 @@ function Header({ cartProducts, showCart, setShowCart }) {
   return (
     <header className="
             flex justify-between items-center
-            py-4 border-b border-gray-400 h-24">
-      <div className="flex-1">
+            py-4 lg:border-b border-gray-400 lg:h-24 h-[4rem]">
+      <div className="lg:hidden flex items-center gap-4 ml-6 lg:ml-0">
+        <img src={menuIcon} alt="menu icon" onClick={toggleMobileMenu}
+          className="cursor-pointer"
+        />
+      </div>
+      <div className="lg:flex-1 flex items-center ml-4">
         <img src={logo} alt="logo" />
       </div>
-      <nav className="flex-[4] flex justify-start gap-12">
+      <nav className="hidden lg:flex-[4] lg:flex justify-start gap-12">
         {["Collections", "Men", "Women", "About", "Contact"].map((label, i) => (
           <a href="#"
           key={i}
@@ -76,15 +86,37 @@ function Header({ cartProducts, showCart, setShowCart }) {
           {label}</a>
         ))}
       </nav>
-      <div className="flex-1 flex justify-end items-center gap-12 relative">
-        <img src={cartIcon} alt="cart" onClick={handleCartClick} className="cursor-pointer"/>
+      <div className="flex-1 flex justify-end items-center lg:gap-12 gap-4 relative">
+        <img src={cartIcon} alt="cart" onClick={handleCartClick} className="cursor-pointer lg:mr-0 mr-4"/>
         {showCart && (
-          <div className="absolute top-16 right-0 bg-white shadow-lg rounded p-4 w-96 z-10" ref={cartRef}>
+          <div className="lg:absolute fixed lg:top-16 top-20 lg:right-0 lg:left-auto lg:translate-x-0 lg:w-96 lg:h-auto
+            h-[17rem] w-[95vw] left-1/2 -translate-x-1/2 bg-white shadow-lg rounded-lg p-4 z-10" ref={cartRef}>
             {cartProducts.length === 0 ? renderEmptyCart() : renderCartItems()}
           </div>
         )}
-        <img src={avatar} alt="avatar" className="w-12 h-auto rounded-full" />
+        <img src={avatar} alt="avatar" className="lg:w-12 w-6 lg:mr-0 mr-6 h-auto rounded-full" />
       </div>
+
+    {isMobileMenuOpen && (
+      <>
+        <div className="fixed inset-0 z-40 flex">
+          <div className="w-2/3 h-full bg-white p-6 flex flex-col gap-6 z-50">
+            <img src={iconClose} alt="Close" onClick={toggleMobileMenu} className="w-4 h-4 mb-4 cusor-pointer"/>
+            {["Collections", "Men", "Women", "About", "Contact"].map((label, i) => (
+              <a
+                href="#"
+                key={i}
+                className="font-bold text-black text-lg"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+          <div className="w-1/3 h-full bg-black/50">
+          </div>
+        </div>
+      </>
+    )}
     </header>
   );
 }

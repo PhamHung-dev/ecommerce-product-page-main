@@ -4,10 +4,6 @@ import ProductGallery from "./components/ProductGallery";
 import ProductInfo from "./components/ProductInfo";
 import Lightbox from "./components/Lightbox";
 
-import "./styles/web_layout.css";
-import "./styles/lightbox_hidden.css";
-import "./styles/cart_drop.css";
-
 function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -20,12 +16,12 @@ function App() {
   }, [cartProducts]);
 
   return (
-    <div className="w-[70%] mx-auto">
+    <div className="w-full lg:w-[70%] lg:mx-auto">
       <Header
         cartProducts={cartProducts}
         showCart={showCart}
         setShowCart={setShowCart}/>
-      <main className="flex flex-wrap gap-8 px-8 py-20">
+      <main className="flex flex-col lg:flex-row flex-wrap lg:gap-8 gap-0 lg:px-8 lg:py-20">
         <ProductGallery
           activeIndex={activeIndex} 
           setActiveIndex={setActiveIndex}

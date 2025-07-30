@@ -39,34 +39,34 @@ function ProductInfo({ cartProducts, setCartProducts }) {
     };
 
     return (
-    <div className="flex-1 pr-20 pt-14">
-        <div className="flex flex-col gap-8">
+    <div className="flex-1 lg:pr-20 lg:pt-14 lg:px-0 lg:pb-0 p-4">
+        <div className="flex flex-col lg:gap-8 gap-2">
             <h4 className='text-gray-500 tracking-widest m-0'>SNEAKER COMPANY</h4>
-            <h1 className='text-4xl leading-[3rem] font-bold m-0'>Fall Limited Edition Sneakers</h1>
-            <p className='text-gray-500 text-[1.1rem] leading-7 tracking-wide m-0'>These low-profile sneakers are your perfect casual
+            <h1 className='lg:text-4xl text-[1.75rem] lg:leading-[3rem] leading-tight font-bold m-0'>Fall Limited Edition Sneakers</h1>
+            <p className='text-gray-500 lg:text-[1.1rem] text-[0.875rem] lg:leading-7 leading-snug tracking-wide m-0'>These low-profile sneakers are your perfect casual
                 wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.</p>
         </div>
 
-        <div className="flex flex-col my-4">
-            <div className="flex items-end gap-4 font-bold text-xl">
-                <span className="text-2xl tracking-wider">$125.00</span>
-                <span className="bg-black text-white py-[0.2rem] px-[0.5rem] text-[1.2rem] rounded">50%</span>
+        <div className="flex lg:flex-col flex-row lg:my-4 my-8 lg:pt-6 leading-none">
+            <div className="flex items-end gap-4 font-bold text-xl leading-none">
+                <span className="text-2xl tracking-wider leading-none">$125.00</span>
+                <span className="bg-black text-white py-[3px] px-[0.5rem] text-sm rounded leading-none">50%</span>
             </div>
-            <div className="line-through text-gray-500 text-[1.2rem] font-bold mt-[0.9rem]">$250.00</div>
+            <div className="w-full lg:w-auto line-through text-gray-500 lg:mt-6 text-[1.2rem] font-bold mt-[0.9rem] text-right lg:text-left">$250.00</div>
         </div>
 
-        <div className="flex items-center gap-4 h-14 mt-6">
-            <div className="basis-2/5 flex w-full h-full items-center bg-gray-100 rounded-md">
-                <div className="flex-1 text-center cursor-pointer mb-1" onClick={handleDecrease}>
-                    <img src={iconMinus} alt="minus button" className='mx-auto'/>
+        <div className="flex items-center lg:flex-row flex-col lg:mt-6 gap-4 lg:h-14 mt-6">
+            <div className="lg:w-[40%] w-full lg:h-14 h-[30%] py-4 flex items-center bg-gray-100 rounded-md">
+                <div className="flex-1 cursor-pointer mb-1" onClick={handleDecrease}>
+                    <img src={iconMinus} alt="minus button" className='mx-auto w-3 h-1'/>
                 </div>
                 <div className="flex-1 text-center text-[1.2rem] font-bold">{proQuantity}</div>
-                <div className="flex-1 text-center cursor-pointer" onClick={handleIncrease}>
-                    <img src={iconPlus} alt="plus button" className='mx-auto'/>
+                <div className="flex-1 cursor-pointer" onClick={handleIncrease}>
+                    <img src={iconPlus} alt="plus button" className='mx-auto w-3 h-3'/>
                 </div>
             </div>
-            <button className="basis-3/5 flex h-full items-center justify-center gap-4 bg-orange-500
-                text-black font-bold rounded-lg px-6 py-3 mr-14 hover:opacity-90 transition"
+            <button className="lg:w-[60%] w-full lg:h-14 h-[30%] py-4 flex items-center justify-center gap-4 bg-orange-500
+                text-black font-bold rounded-lg px-6 py-3 lg:mr-14 hover:opacity-90 transition"
                 onClick={handleAddToCart}
             >
                 <img src={iconCart} alt="cart"/>

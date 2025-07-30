@@ -5,3 +5,11 @@
 body {
     @apply font-sans text-[#333] m-0 p-0 box-border;
 }
+
+@media (max-width: 767px) {
+    html, body, #root {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+}
